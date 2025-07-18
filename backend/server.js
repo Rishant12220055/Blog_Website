@@ -18,6 +18,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/blogs', blogRoutes);
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 // Database connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
